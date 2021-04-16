@@ -36,18 +36,18 @@ $('document').ready(() => {
 
                 function displayResponseInHtml(response){
     counterContainer.text(`Kommentare vom Backend: ${response.data.length}`)
-}
-                
+
+
                
                 
                    
-                
-response.data.forEach(kommentar => {
+   kommentarContainer.empty()             
+response.data.reverse ().forEach(kommentar => {
     kommentarContainer.append(`
     <div class ="kommentare">${kommentar.user} hat gesagt : ${kommentar.greeting} und hat ${kommentar.likes} likes</div>`)
 })
+}
 
-})
 
 axios.get(backendUrl)
                     .then(response => {
@@ -71,14 +71,6 @@ meinButton.click(() => {
                     
             
             
- 
-
-
-
-
-
-
-
                 let audioFile = new Audio('salamisound-3710049-hundebellen-einmal-bellen.mp3')
                 let audioIsPlaying = false
                 audioFile.volume = 0.5
@@ -137,6 +129,8 @@ meinButton.click(() => {
             })
             
     
+
+    })
           
            
 
