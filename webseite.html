@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+    <head>
+ 
+        <title>
+            Adrians Website
+        </title>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>     
+
+
+
+
+ <script>
+
+
+
+$('document').ready(() => {
+                let meinButton = $('#mein-button')
+                let kommentarContainer = $('#kommentar-container')
+                let counterContainer = $('#counter')
+                let textField = $('#text-field')
+                let nameField = $('#name-field')
+                let playButton = $('#play-button')
+                let volumeUpButton = $('#volume-up-button')
+                let volumeDownButton = $('#volume-down-button')
+                
+            
+        
+                let kommentarWurdeGeadded = false
+                let counter = 0
+               
+                let backendUrl = 'https://simon-guesbook-backend.herokuapp.com/greetings/adriansazimani'
+
+
+                function displayResponseInHtml(response){
+    counterContainer.text(`Kommentare vom Backend: ${response.data.length}`)
+}
+                
+               
+                
+                   
+                
+response.data.forEach(kommentar => {
+    kommentarContainer.append(`
+    <div class ="kommentare">${kommentar.user} hat gesagt : ${kommentar.greeting} und hat ${kommentar.likes} likes</div>`)
+})
+
+})
+
+axios.get(backendUrl)
+                    .then(response => {
+                        displayResponseInHtml(response)
+                    })     
+
+meinButton.click(() => {
+                    let aktuellerText = textField.val()
+                    let aktuellerName = nameField.val()
+
+                    let body = {
+                        greeting: aktuellerText,
+                        user: aktuellerName
+                    }
+                    
+                    axios.post(backendUrl,body)
+                    .then(response => {
+                            displayResponseInHtml(response)
+                        })
+                
+                    
+            
+            
+ 
+
+
+
+
+
+
+
+                let audioFile = new Audio('salamisound-3710049-hundebellen-einmal-bellen.mp3')
+                let audioIsPlaying = false
+                audioFile.volume = 0.5
+
+               
+
+
+
+
+
+                playButton.click(() => {
+                    if (audioIsPlaying) {
+                        audioFile.pause()
+                        audioFile.currentTime = 0
+                        audioIsPlaying = false
+                    } else {
+                        audioFile.play()
+                        audioIsPlaying = true
+                    }
+                })
+
+                volumeUpButton.click(() => {
+                    audioFile.volume += 0.1
+                })
+
+                volumeDownButton.click(() => {
+                    audioFile.volume -= 0.1
+                })
+
+
+    
+                meinButton.click(() => {
+                    counter = counter + 1
+                    let aktuellerText = textField.val()
+                    let aktuellerName = nameField.val()
+
+                    if(counter > 5) {
+                        counterContainer.removeClass('green')
+                        counterContainer.addClass('red')
+                    }
+
+                    if (!kommentarWurdeGeadded) {
+                        kommentarContainer.empty()
+                        kommentarWurdeGeadded = true
+                    }
+
+                    
+                
+
+                    kommentarContainer.append(`
+                    <div class="kommentare">
+                        ${aktuellerName} hat geschrieben: ${aktuellerText} <button>löschen</button>
+                    </div>`)
+                    counterContainer.text(`Kommentare: ${counter}`)
+                })
+            })
+            
+    
+          
+           
+
+
+
+
+
+   
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+ </script>                          
+                  
+
+
+
+
+
+<style>
+
+
+
+
+
+h6{ color:red ;
+font-size: xx-large;
+
+}
+
+h5 { color: brown;
+font-size:xx-large;
+
+}
+body {
+  font-size: 20px;
+}
+
+.green {
+    background-color:green;
+
+}
+
+.red {
+    background-color: red;
+}
+
+
+
+
+.kommentare {
+    background-color: aquamarine;
+    margin: 10px;
+    padding: 20px;
+}
+
+
+
+
+
+
+
+body{font-family:"Marvel Schrift"
+
+}
+
+h1{
+    background-color: rgb(0, 23, 128);
+    color: white;
+    font-family: "Marvel Schrift"
+}
+
+.primary-color { background-color: blue;}
+
+
+
+    .primary-color:hover { background-color: rgb(176,243,255);}
+ 
+
+
+
+ .secondary-color { background-color: rgb(165, 42, 128);}
+ 
+     .secondary-color:hover { background-color: rgb(176,243,255);
+     
+}
+
+
+
+  
+
+
+    
+
+
+
+table tr:nth-child(ood){background-color: lightgray;
+}
+
+table tr:nth-child(even){background-color:darkgrey;
+}
+
+table tr:nth-child(2){background-color: red;
+}
+table tr:nth-child(5){background-color:blue;
+}
+
+table td:nth-child(1){background-color: rgb(255, 250, 176);
+}
+
+
+ .button-base {border-radius: 20px;
+ padding: 20px;
+ padding-top: 10;
+ padding-bottom: 10px;
+margin: 30px;
+
+ }
+
+ @font-face {
+     font-family: "Marvel Schrift";
+     src: url(MarvelRegular-Dj83.ttf);
+ }
+
+h1 {
+    letter-spacing: 35px;
+    font-weight: 100;
+    font-family: "Marvel Schrift";
+}
+
+
+
+
+
+</style>
+<head>
+<body>
+    
+    
+   
+<h1> Willkommen in meinem Gästebuch<h1>
+    
+    <h2>Mein Name ist Adrian Sazimani</h2>
+ <br>
+ <br>
+ <br>
+    
+    
+</a>
+<ul>
+    <th>Hobbys:</th>
+</ul>
+
+ <li>Fußball,
+     Schwimmen,
+     Joggen
+ </li>
+    
+  <ul>
+      <th>Meine Lieblingsfächer</th>
+  </ul> 
+  <li>
+      Mathe,Sport,Deutsch
+  </li>
+    
+<br>
+<br
+br>
+    
+<div>
+    <input type="text">
+    <span>Bitte Gruß eingeben</span>
+</div>
+<br>
+<br>
+<br>
+    <input type="checkbox"
+    
+    ><span>Die Seite gefällt mir <span> </div><p> &#128077;</p>
+        
+<div>
+   <br>
+   <br>
+   
+     <div>
+        <input type="checkbox"
+        ><span>
+            Die Seite gefällt mir nicht 
+            <p> &#128078;</p>
+        </span>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+ 
+<h3>Kommentare:</h3>
+<h4> Urlaub in Nordmazedonien (Struga)<h4>
+
+<table>
+    <td>
+      <td><img src="aquarius.jpg" alt="Aleq" width="550" height="350"><img>
+      <td>Aquarius Beach</td>
+      <td><img src="versus beach struga.jpeg" alt="Aleq" width="550" height="350"/></td>><img> 
+        <td>Versus Beach</td>
+        <td><img src="relax-caffe struga.jpg" width="550" height="350"><img>
+            Relax Caffe
+      </td>
+    </tr>
+  </table>
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+<h4>Die Innenstadt Struga<h4>
+   
+    <img src="Reiseleiter-Mazedonien-Struga-Poesiehauptstadt-der-Welt-10.jpg" alt="Aleq" width="850" height="500"><img>
+<br>
+<br>
+<br>
+
+<h6>Wie findet Ihr meine Bilder? Lasst ein Kommentar da ;)</h6>
+
+<input type="text" id="text-field">
+<span>Name:</span>
+<input type="text" id="name-field">
+    
+
+
+    
+
+    
+
+
+
+<div id="counter">
+    Kommentar: 0
+</div>
+
+
+    </div>
+    <button id="mein-button">
+        Adde Kommentar
+    </button>
+  
+<div id="kommentar-container">
+    keine Kommentare bis jetzt
+</div>
+
+
+
+
+
+<h5>Click here below if you like dogs!</h5>
+
+<p> &#128071;</p>
+
+<div>
+<button id="play-button">
+    Play/Stop Musik
+</button>
+
+<button id="volume-down-button">
+           -
+       </button>
+
+       <button id="volume-up-button">
+           +
+       </button>
+    </div>
+<br>
+<br>
+
+
+<img src="Hunde Bild.jpg" ><img>
+
+
+
+
+
+</body>
+    
+
+</html>
